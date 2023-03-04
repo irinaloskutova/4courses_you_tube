@@ -17,11 +17,12 @@ class Channel:
         self.video_count = self.get_video_count()  #инициализирует количество видео
         self.viewCount = self.get_viewCount  #инициализирует общее количество просмотров
 
-    # @protected
+    # @private
     @property
     def channel_id(self):
         return self.__channel_id
 
+    # @private
     @channel_id.setter
     def channel_id(self, channel_id):
         self.__channel_id = channel_id
@@ -59,7 +60,9 @@ class Channel:
 
     @classmethod
     def get_service(cls):
-        pass
+        api_key: str = os.getenv('YOUTUBE_API_KEY')
+        youtube = build('youtube', 'v3', developerKey=api_key)
+        return youtube
 
 
 vdud = Channel('UCMCgOm8GZkHp8zJ6l7_hIuA')
@@ -76,12 +79,12 @@ print(vdud.url)
 # https://www.youtube.com/channel/UCMCgOm8GZkHp8zJ6l7_hIuA
 #
 # # менять не можем
-vdud.channel_id= 'Новое название'
-print(vdud.channel_id)
+# vdud.channel_id= 'Новое название'
+# print(vdud.channel_id)
 # AttributeError: property 'channel_id' of 'Channel' object has no setter
 #
 # # можем получить объект для работы с API вне класса
-# print(Channel.get_service())
+print(Channel.get_service())
 # <googleapiclient.discovery.Resource object at 0x000002B1E54F9750>
 
 
