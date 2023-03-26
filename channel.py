@@ -1,8 +1,8 @@
 import os
 import json
 import isodate
-from datetime import timedelta, datetime, time
-import timedelta
+from datetime import datetime
+from datetime import timedelta
 
 from googleapiclient.discovery import build
 
@@ -140,16 +140,16 @@ class PlayList:
 
     @property
     def total_duration(self):
-        duration_ = datetime.timedelta()
-        total_duration = datetime.timedelta()
+        duration_ = timedelta()
+        total_duration_ = timedelta()
         for i in range(len(self.videos)+1):
             iso_8601_duration = self.videos['items'][i]['contentDetails']['duration']
             duration_ = isodate.parse_duration(iso_8601_duration)
-            total_duration += duration_
-        return duration_
+            total_duration_ += duration_
+        return total_duration_
 
     def total_seconds(self):
-        pass
+        return self.total_duration.seconds
 
     def show_best_video(self):
         videos = {}
@@ -171,9 +171,8 @@ if __name__ == '__main__':
     # print(pl.url)    # https: // www.youtube.com / playlist?list = PLguYHBi01DWr4bRWc4uaguASmo7lW4GCb
     duration = pl.total_duration
     print(duration)
-    # # 3: 41:01
     print(type(duration))
-    # print(duration.total_seconds())
+    print(duration.total_seconds())
     # print(pl.show_best_video())
 
 
