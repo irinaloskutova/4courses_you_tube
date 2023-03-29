@@ -164,16 +164,10 @@ class PlayList:
 
 
 if __name__ == '__main__':
-    pl = PlayList('PLguYHBi01DWr4bRWc4uaguASmo7lW4GCb')
-    # print(pl.response)
-    # pl.to_json('response.json')
-    # print(pl.title)    # Редакция.АнтиТревел
-    # print(pl.url)    # https: // www.youtube.com / playlist?list = PLguYHBi01DWr4bRWc4uaguASmo7lW4GCb
-    duration = pl.total_duration
-    print(duration)
-    print(type(duration))
-    print(duration.total_seconds())
-    # print(pl.show_best_video())
+    broken_video = Video('broken_video_id')
+    print(broken_video.video_title)
+
+    print(broken_video.video_likes)
 
 
 
